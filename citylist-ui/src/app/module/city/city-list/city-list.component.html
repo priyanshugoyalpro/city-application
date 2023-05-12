@@ -1,0 +1,17 @@
+<div class="card">
+  <img src="{{city.url}}" (error)="setDefaultImg()" alt="City Image" />
+  <div class="container" *ngIf="!isUpdate">
+    <div class="details-bar">
+      <h2>{{ city.name }}</h2>
+      <button class="edit-btn align-left" (click)="openEdit()">edit</button>
+    </div>
+  </div>
+  <div class="edit-panel" *ngIf="isUpdate">
+    <form [formGroup]="updateForm">
+      <input type="text" class="form-control" placeholder="City Name" formControlName="name"/>
+      <input type="text" class="form-control" placeholder="City Image Url" formControlName="url"/>
+    </form>
+    <button class="edit-btn align-left" (click)="closeUpdate()">cancel</button>
+    <button class="edit-btn align-left" (click)="submitForm()">submit</button>
+  </div>
+</div>

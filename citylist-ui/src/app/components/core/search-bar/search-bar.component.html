@@ -1,0 +1,3 @@
+<input type="text" class="form-control" #kw placeholder="Type to Search" [value]="searchKeyword"/>
+<button class="btn btn-clear" (click)="kw.value =''; clearSearch()">Clear</button>
+<button class="btn" (click)="startSearch(kw.value)">Search</button>

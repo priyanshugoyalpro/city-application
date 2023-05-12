@@ -1,0 +1,19 @@
+
+<div  >
+ <h1>
+    Welcome to CITY LIST Application</h1>
+    </div>
+
+<div class="card-container">
+  <div *ngFor="let city of cities$ | async">
+    <city-list [city]="city" (update)="updateCity($event)"> </city-list>
+  </div>
+</div>
+
+<div class="header">
+ 
+  <app-page-size [(pageSize)]="pageSize" [pageNum]="pageNum" [sizeOptions]="sizeOptions" (refreshEmitter)="getCities()"></app-page-size>
+  <app-page-number [(pageNum)]="pageNum" [isPageFull]="1000" (refreshEmitter)="getCities()"></app-page-number>
+  <app-search-bar (search)="search($event)" (clear)="clearSearch()"></app-search-bar>
+ 
+</div>

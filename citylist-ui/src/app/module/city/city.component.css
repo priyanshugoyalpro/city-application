@@ -1,0 +1,25 @@
+.header {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 15px;
+    padding: 5px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+   
+  
+  
+    text-decoration-line: overline underline;
+    text-decoration-color: rgb(55, 0, 255);
+  }
+
+
+.card-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto auto;
+    padding: 20px;
+    justify-content: center;
+}

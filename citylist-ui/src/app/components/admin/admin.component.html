@@ -1,0 +1,40 @@
+<p>City List Application </p>
+
+<div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="getCities()"
+          
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+<div class="card">
+    <table class="table table-bordered table-inverse">
+      <tr>
+        <th>City id</th>
+        <th>City Name</th>
+        <th>URL</th>
+      </tr>
+      <tr *ngFor="let city of cities">
+        <td>
+            <img src="{{city.url}}" alt="not found" height="200" width="200">
+        </td>
+        <td>
+          {{city.name}}
+        </td>
+        
+      </tr>
+    </table>
+  </div>

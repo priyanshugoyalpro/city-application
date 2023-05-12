@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col">
+      {{pageNum +1 }}. page
+      <select #pn class="options" (change)="changePageSize(pn.value)">
+        
+        <option *ngFor="let item of sizeOptions" [value]="item">{{item}}</option>
+      </select>
+      Items shown
+      <button class="btn" (click)="refresh()">
+        Refresh
+      </button>
+    </div>
+  </div>
