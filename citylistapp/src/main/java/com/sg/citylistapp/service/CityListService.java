@@ -3,6 +3,8 @@ package com.sg.citylistapp.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import com.sg.citylistapp.helper.CityUtilityHelper;
 import com.sg.citylistapp.model.CityRequest;
 import com.sg.citylistapp.model.CityResponse;
 import com.sg.citylistapp.repository.CityListRepository;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Contains all the business logic for City List App
@@ -20,7 +23,10 @@ import com.sg.citylistapp.repository.CityListRepository;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class CityListService {
+
+	private static final Logger logger = LoggerFactory.getLogger(CityListService.class);
 
 	@Autowired
 	private CityListRepository cityListRepository;
@@ -31,13 +37,13 @@ public class CityListService {
 	 * @return List<City>
 	 */
 	public List<CityResponse> getCities() {
+		logger.info("fetching all cities data from databases");
 		List<City> cities = cityListRepository.findAll();
 
 		return cities.stream().map(x -> {
 
 			return CityUtilityHelper.convertCityToResponse(x);
 		}).collect(Collectors.toList());
-
 	}
 
 	/**
@@ -47,7 +53,7 @@ public class CityListService {
 	 * @return City
 	 */
 	public CityResponse getCityById(Long id) {
-
+		logger.info("fetching city data from databases ",id);
 		City city = cityListRepository.findById(id).orElseThrow(() -> new CityNotFoundException(1, "City Not Found"));
 		return CityUtilityHelper.convertCityToResponse(city);
 	}
@@ -60,13 +66,13 @@ public class CityListService {
 	 * @return List<City>
 	 */
 	public List<CityResponse> getByPageAndSize(int page, int size) {
+		logger.info("fetching all cities data from databases");
 		PageRequest pageSearch = PageRequest.of(page, size);
 		List<City> cities = cityListRepository.findAll(pageSearch).toList();
 		return cities.stream().map(x -> {
 
 			return CityUtilityHelper.convertCityToResponse(x);
 		}).collect(Collectors.toList());
-
 	}
 
 	/**
@@ -76,6 +82,7 @@ public class CityListService {
 	 * @return List<City>
 	 */
 	public List<CityResponse> getCityByName(String name) {
+		logger.info("fetching city by name from databases");
 		List<City> cities = cityListRepository.findByNameContainingIgnoreCase(name);
 		return cities.stream().map(x -> {
 
@@ -91,6 +98,7 @@ public class CityListService {
 	 * @param city
 	 */
 	public CityResponse update(Long id, CityRequest city) {
+		logger.info("updating data databases");
 		City data = cityListRepository.findById(id).orElseThrow(() -> new CityNotFoundException(1, "City Not Found"));
 		if (Objects.nonNull(city.getName()) && !data.getName().equals(city.getName())) {
 			data.setName(city.getName());

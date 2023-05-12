@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sg.citylistapp.model.CityRequest;
 import com.sg.citylistapp.model.CityResponse;
 import com.sg.citylistapp.service.CityListService;
-
 import lombok.RequiredArgsConstructor;
 
 /**
- * This is the Rest Controller class for fetching all the list of Cities
+ * This is the Rest Controller class for fetching all the list of Cities This
+ * API is used by UI App to fetch/update cities
  * 
  * @author priyanshu.goyal
  *
@@ -32,7 +32,7 @@ public class CityListRestAPI {
 
 	@Autowired
 	private CityListService cityListService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CityListRestAPI.class);
 
 	/**

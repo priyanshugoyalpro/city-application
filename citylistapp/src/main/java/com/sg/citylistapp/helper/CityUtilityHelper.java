@@ -5,6 +5,7 @@ import com.sg.citylistapp.model.CityResponse;
 
 /**
  * Utility Class
+ * 
  * @author priyanshu.goyal
  *
  */
